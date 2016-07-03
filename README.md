@@ -1,8 +1,8 @@
 # lengthmatters.vim
 
-[![Build Status](https://travis-ci.org/whatyouhide/vim-lengthmatters.svg)](https://travis-ci.org/whatyouhide/vim-lengthmatters)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/whatyouhide/vim-lengthmatters.svg)](http://isitmaintained.com/project/whatyouhide/vim-lengthmatters "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/whatyouhide/vim-lengthmatters.svg)](http://isitmaintained.com/project/whatyouhide/vim-lengthmatters "Percentage of issues still open")
+[![Build Status](https://travis-ci.org/scps950707/vim-lengthmatters.svg)](https://travis-ci.org/scps950707/vim-lengthmatters)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/scps950707/vim-lengthmatters.svg)](http://isitmaintained.com/project/scps950707/vim-lengthmatters "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/scps950707/vim-lengthmatters.svg)](http://isitmaintained.com/project/scps950707/vim-lengthmatters "Percentage of issues still open")
 
 Highlight the part of a line that doesn't fit into `textwidth` (or really,
 whatever width you like).
@@ -19,24 +19,22 @@ I personally moved from [Vundle][vundle] to [vim-plug][vim-plug] a while ago and
 never looked back. Anyways, whatever floats your boat:
 ``` viml
 " vim-plug
-Plug 'whatyouhide/vim-lengthmatters'
+Plug 'scps950707/vim-lengthmatters'
 " NeoBundle
-NeoBundle 'whatyouhide/vim-lengthmatters'
+NeoBundle 'scps950707/vim-lengthmatters'
 " Vundle
-Plugin 'whatyouhide/vim-lengthmatters'
+Plugin 'scps950707/vim-lengthmatters'
 ```
 
 You pathogen dinosaurs can just clone the repo:
 ```
-git clone https://github.com/whatyouhide/vim-lengthmatters.git ~/.vim/bundle
+git clone https://github.com/scps950707/vim-lengthmatters.git ~/.vim/bundle
 ```
 
 
 ## What's in it
 
-The highlighting functionality operates always on a **per-window** basis,
-meaning you can keep it enabled on a window and disabled on another one at the
-same time.
+The highlighting functionality operates always on a **per-buffer** basis.
 
 By default, it's based on the value of the `textwidth` option (it *feels*
 right), but this can be changed in the options. See `:h 'textwidth'` for more
@@ -44,6 +42,7 @@ infos.
 
 The plugin provides a bunch of commands:
 
+- `:LengthmattersInit`: init the highlighting for the current window
 - `:LengthmattersToggle`: toggle the highlighting for the current window
 - `:LengthmattersEnable`: enable the highlighting for the current window
 - `:LengthmattersDisable`: disable the highlighting for the current window
@@ -55,42 +54,30 @@ The plugin provides a bunch of commands:
 
 ## Configuration
 
-To set a variable in vim (for example `g:foo` to the string `foo`), just do:
-
-``` viml
-let g:foo = 'foo'
-```
-
-Most of the configuration for this plugin can be done through a handful of
-variables. The only thing you have to use functions for is highlighting. Read
-the [relative section](#hl) for how to do it.
-
 #### `g:lengthmatters_on_by_default`
 
-(defaults to `1`)  
+(defaults to `1`)
 If this variable is set to `0`, no highlighting will be done
 when opening a new window. Highlighting can still be activated with one of the
 previously mentioned commands.
 
 #### `g:lengthmatters_start_at_column`
 
-(defaults to `81`)  
+(defaults to `81`)
 The value of this variable is the *first character* to be highlighted; the
 highlighting will continue until the end of the line. This means that if it's
-okay for lines to be `40` characters long (because you're from 1920 or 
+okay for lines to be `40` characters long (because you're from 1920 or
 something) you set this variable to `41`.
 
 #### `g:lengthmatters_use_textwidth`
 
-(defaults to `1`)  
+(defaults to `1`)
 Whether to highlight based on the value of `textwidth`. If `textwidth` is not
 set, it will fall back to `g:lengthmatters_start_at_column`.
 
 #### `g:lengthmatters_excluded`
 
-(defaults to
-`['unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m',
-'nerdtree', 'help', 'qf', 'dirvish']`)  
+(defaults to `[]`)
 
 A list of **filetypes** for which the highlighting isn't (and can't be) enabled.
 
@@ -102,7 +89,7 @@ read-only file.
 
 #### `g:lengthmatters_match_name`
 
-(defaults to `'OverLength'`)  
+(defaults to `'OverLength'`)
 The name of the syntax element that will be used to highlight and match the
 overly long lines.
 
@@ -143,6 +130,10 @@ called `:LengthmattersReload`.
 
 If you want to test this plugin, be sure you have [vader.vim][vader] installed,
 then open `tests/lengthmatters.vader` and run `:Vader`.
+
+
+## Maintainer
+[scps950707](https://github.com/scps950707)
 
 
 ## License
